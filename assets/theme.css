@@ -19,12 +19,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #39FF14;
+  background: linear-gradient(180deg, #39FF14, #FF1493);
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2ee00f;
+  background: linear-gradient(180deg, #FF4500, #FFD700);
 }
 
 /* Hover Effects */
