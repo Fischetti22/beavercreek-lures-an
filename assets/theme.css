@@ -1,0 +1,65 @@
+/* Beavercreek Lures Theme Styles */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #39FF14;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2ee00f;
+}
+
+/* Hover Effects */
+a:hover {
+  opacity: 0.8;
+  transition: all 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
+  transition: all 0.3s;
+}
+
+/* Product Card Hover */
+.product-card:hover {
+  border-color: #39FF14 !important;
+  transform: scale(1.02);
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header nav {
+    display: none !important;
+  }
+  
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  h2 {
+    font-size: 2rem !important;
+  }
+}
