@@ -5,12 +5,20 @@
     <!-- Product Images -->
     <div>
       {% if product.featured_image %}
-        <img src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" style="width:100%;border:3px solid #097D07;box-shadow:0 0 40px rgba(9,125,7,0.2);">
+        <img class="main-img" src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" style="width:100%;border:3px solid #097D07;box-shadow:0 0 40px rgba(9,125,7,0.2);">
       {% endif %}
       {% if product.images.size > 1 %}
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;">
           {% for image in product.images limit: 8 %}
-            <img src="{{ image | img_url: '200x200' }}" alt="{{ product.title }}" style="width:100%;cursor:pointer;border:2px solid #222;transition:border-color 0.3s;" onmouseover="document.querySelector('.main-img').src=this.src.replace('200x200','800x800')">
+            <img
+              class="product-thumb"
+              src="{{ image | img_url: '200x200' }}"
+              data-full="{{ image | img_url: '800x800' }}"
+              alt="{{ product.title }}"
+              style="width:100%;cursor:pointer;border:2px solid #222;transition:border-color 0.3s;"
+              role="button"
+              tabindex="0"
+            >
           {% endfor %}
         </div>
       {% endif %}
@@ -29,7 +37,7 @@
             <label style="display:block;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:2px;font-size:0.85rem;color:#097D07;">SELECT COLOR</label>
             <select name="id" style="width:100%;padding:15px;background:#111;border:2px solid #097D07;color:#fff;font-size:1rem;cursor:pointer;">
               {% for variant in product.variants %}
-                <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                <option value="{{ variant.id }}" {% if variant.image %}data-image="{{ variant.image | img_url: '800x800' }}"{% endif %} {% unless variant.available %}disabled{% endunless %}>
                   {{ variant.title }}{% unless variant.available %} - Sold Out{% endunless %}
                 </option>
               {% endfor %}
@@ -47,6 +55,48 @@
           <button type="submit" class="btn-primary" style="flex:1;padding:16px;font-size:1.4rem;border:none;cursor:pointer;margin-top:23px;">Add to Cart</button>
         </div>
       {% endform %}
+
+      <script>
+        (function () {
+          var mainImg = document.querySelector('.main-img');
+          if (!mainImg) return;
+
+          // Thumbnail switching (works on mobile)
+          var thumbs = document.querySelectorAll('.product-thumb');
+          thumbs.forEach(function (thumb) {
+            function setMain() {
+              var full = thumb.getAttribute('data-full');
+              if (full) mainImg.src = full;
+            }
+
+            thumb.addEventListener('click', function (e) {
+              e.preventDefault();
+              setMain();
+            });
+
+            thumb.addEventListener('keydown', function (e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setMain();
+              }
+            });
+          });
+
+          // Variant switching -> update main image when variant has an image
+          var variantSelect = document.querySelector('form[action^="/cart/add"] select[name="id"]');
+          if (variantSelect) {
+            function syncVariantImage() {
+              var opt = variantSelect.options[variantSelect.selectedIndex];
+              if (!opt) return;
+              var img = opt.getAttribute('data-image');
+              if (img) mainImg.src = img;
+            }
+
+            variantSelect.addEventListener('change', syncVariantImage);
+            syncVariantImage();
+          }
+        })();
+      </script>
 
       <a href="/collections/all" style="color:#666;font-size:0.9rem;">&larr; Back to all lures</a>
     </div>
