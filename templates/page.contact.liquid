@@ -1,0 +1,127 @@
+<div style="max-width: 800px; margin: 60px auto; padding: 0 20px;">
+  
+  <!-- Hero Banner -->
+  <div style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1a1a1a, #000); border: 3px solid; border-image: linear-gradient(90deg, {{ settings.color_accent }}, {{ settings.color_pink }}, {{ settings.color_orange }}, {{ settings.color_yellow }}) 1; margin-bottom: 60px;">
+    <h1 style="font-family: {{ settings.font_heading.family }}, Impact, sans-serif; color: {{ settings.color_accent }}; font-size: 4rem; margin: 0 0 20px 0; text-transform: uppercase; text-shadow: 0 0 20px {{ settings.color_accent }};">
+      {{ page.title }}
+    </h1>
+    <p style="font-size: 1.2rem; color: #ccc; margin: 0;">
+      Got questions? We'd love to hear from you!
+    </p>
+  </div>
+  
+  <!-- Contact Form -->
+  <div style="background: #1a1a1a; padding: 50px; border-radius: 10px; border: 2px solid {{ settings.color_accent }};">
+    
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <div style="background: {{ settings.color_accent }}; color: #000; padding: 20px; margin-bottom: 30px; border-radius: 5px; text-align: center; font-weight: bold; text-transform: uppercase;">
+          ✅ Thanks for reaching out! We'll get back to you soon.
+        </div>
+      {% endif %}
+      
+      {% if form.errors %}
+        <div style="background: #ff4444; color: #fff; padding: 20px; margin-bottom: 30px; border-radius: 5px;">
+          <strong>Oops! Please fix the following:</strong>
+          <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+            {% for field in form.errors %}
+              <li>{{ field | capitalize }} {{ form.errors.messages[field] }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      
+      <!-- Name -->
+      <div style="margin-bottom: 25px;">
+        <label for="contact-name" style="display: block; color: {{ settings.color_accent }}; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem;">
+          Name *
+        </label>
+        <input 
+          type="text" 
+          id="contact-name" 
+          name="contact[name]" 
+          required
+          style="width: 100%; padding: 15px; background: #000; border: 2px solid #333; color: #fff; font-size: 1rem; border-radius: 5px; transition: border-color 0.3s;"
+          onfocus="this.style.borderColor='{{ settings.color_accent }}'"
+          onblur="this.style.borderColor='#333'"
+        >
+      </div>
+      
+      <!-- Email -->
+      <div style="margin-bottom: 25px;">
+        <label for="contact-email" style="display: block; color: {{ settings.color_pink }}; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem;">
+          Email *
+        </label>
+        <input 
+          type="email" 
+          id="contact-email" 
+          name="contact[email]" 
+          required
+          style="width: 100%; padding: 15px; background: #000; border: 2px solid #333; color: #fff; font-size: 1rem; border-radius: 5px; transition: border-color 0.3s;"
+          onfocus="this.style.borderColor='{{ settings.color_pink }}'"
+          onblur="this.style.borderColor='#333'"
+        >
+      </div>
+      
+      <!-- Phone (Optional) -->
+      <div style="margin-bottom: 25px;">
+        <label for="contact-phone" style="display: block; color: {{ settings.color_orange }}; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem;">
+          Phone (Optional)
+        </label>
+        <input 
+          type="tel" 
+          id="contact-phone" 
+          name="contact[phone]" 
+          style="width: 100%; padding: 15px; background: #000; border: 2px solid #333; color: #fff; font-size: 1rem; border-radius: 5px; transition: border-color 0.3s;"
+          onfocus="this.style.borderColor='{{ settings.color_orange }}'"
+          onblur="this.style.borderColor='#333'"
+        >
+      </div>
+      
+      <!-- Message -->
+      <div style="margin-bottom: 30px;">
+        <label for="contact-message" style="display: block; color: {{ settings.color_yellow }}; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem;">
+          Message *
+        </label>
+        <textarea 
+          id="contact-message" 
+          name="contact[body]" 
+          rows="6"
+          required
+          style="width: 100%; padding: 15px; background: #000; border: 2px solid #333; color: #fff; font-size: 1rem; border-radius: 5px; resize: vertical; transition: border-color 0.3s; font-family: inherit;"
+          onfocus="this.style.borderColor='{{ settings.color_yellow }}'"
+          onblur="this.style.borderColor='#333'"
+        ></textarea>
+      </div>
+      
+      <!-- Submit Button -->
+      <button 
+        type="submit"
+        style="width: 100%; padding: 20px; background: {{ settings.color_accent }}; color: #000; border: none; font-family: {{ settings.font_heading.family }}, Impact, sans-serif; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 5px; font-weight: bold; box-shadow: 0 0 30px rgba(57, 255, 20, 0.3); transition: all 0.3s;"
+        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 0 40px rgba(57, 255, 20, 0.6)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 30px rgba(57, 255, 20, 0.3)'"
+      >
+        SEND MESSAGE
+      </button>
+      
+    {% endform %}
+    
+  </div>
+  
+  <!-- Additional Contact Info -->
+  <div style="margin-top: 60px; text-align: center; padding: 40px; background: #1a1a1a; border-radius: 10px;">
+    <h3 style="font-family: {{ settings.font_heading.family }}, Impact, sans-serif; color: {{ settings.color_accent }}; font-size: 2rem; margin-bottom: 20px; text-transform: uppercase;">
+      OTHER WAYS TO REACH US
+    </h3>
+    <div style="color: #ccc; line-height: 2;">
+      <p style="margin: 10px 0;">
+        <strong style="color: #fff;">Email:</strong> info@beavercreeklures.com
+      </p>
+      <p style="margin: 10px 0;">
+        <strong style="color: #fff;">Follow Us:</strong> 
+        <a href="https://www.facebook.com/people/Beavercreek-Lures/61576769684823/" target="_blank" style="color: {{ settings.color_pink }}; text-decoration: none; margin-left: 10px;">Facebook</a>
+      </p>
+    </div>
+  </div>
+  
+</div>
