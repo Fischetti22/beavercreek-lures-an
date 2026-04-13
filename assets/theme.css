@@ -635,14 +635,17 @@ button:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-  header nav {
-    display: none !important;
-  }
-  
+  /*
+    Important: do not force-hide header nav on mobile.
+    The mobile menu relies on toggling `.site-nav.open`.
+  */
+  header nav.site-nav { display: none; }
+  header nav.site-nav.open { display: flex !important; }
+
   h1 {
     font-size: 1.5rem !important;
   }
-  
+
   h2 {
     font-size: 2rem !important;
   }
