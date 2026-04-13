@@ -12,13 +12,13 @@ $w.onReady(function () {
     // Hero CTA Button - Neon green glow effect on hover
     if ($w('#heroButton')) {
         $w('#heroButton').onMouseIn(() => {
-            $w('#heroButton').style.backgroundColor = '#39FF14';
+            $w('#heroButton').style.backgroundColor = '#097D07';
             $w('#heroButton').style.color = '#000000';
         });
         
         $w('#heroButton').onMouseOut(() => {
-            $w('#heroButton').style.backgroundColor = 'rgba(57, 255, 20, 0.1)';
-            $w('#heroButton').style.color = '#39FF14';
+            $w('#heroButton').style.backgroundColor = 'rgba(9, 125, 7, 0.1)';
+            $w('#heroButton').style.color = '#097D07';
         });
         
         $w('#heroButton').onClick(() => {
@@ -51,7 +51,7 @@ $w.onReady(function () {
                 
                 // Add neon green border glow
                 if ($w(cardId + 'Border')) {
-                    $w(cardId + 'Border').style.borderColor = '#39FF14';
+                    $w(cardId + 'Border').style.borderColor = '#097D07';
                     $w(cardId + 'Border').style.borderWidth = '2px';
                 }
             });
@@ -62,7 +62,7 @@ $w.onReady(function () {
                     .play();
                 
                 if ($w(cardId + 'Border')) {
-                    $w(cardId + 'Border').style.borderColor = 'rgba(57, 255, 20, 0.3)';
+                    $w(cardId + 'Border').style.borderColor = 'rgba(9, 125, 7, 0.3)';
                     $w(cardId + 'Border').style.borderWidth = '1px';
                 }
             });

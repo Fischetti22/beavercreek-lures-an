@@ -56,7 +56,7 @@ $w.onReady(function () {
             // Add dark background when scrolled
             if (currentScrollY > 50) {
                 $w('#header').style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-                $w('#header').style.borderBottomColor = '#39FF14';
+                $w('#header').style.borderBottomColor = '#097D07';
             } else {
                 $w('#header').style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
                 $w('#header').style.borderBottomColor = 'transparent';
@@ -89,7 +89,7 @@ $w.onReady(function () {
     navLinks.forEach((linkId) => {
         if ($w(linkId)) {
             $w(linkId).onMouseIn(() => {
-                $w(linkId).style.color = '#39FF14';
+                $w(linkId).style.color = '#097D07';
                 $w(linkId).style.fontWeight = '700';
             });
             
@@ -140,13 +140,13 @@ $w.onReady(function () {
         
         // Hover effect
         $w('#backToTopButton').onMouseIn(() => {
-            $w('#backToTopButton').style.backgroundColor = '#39FF14';
+            $w('#backToTopButton').style.backgroundColor = '#097D07';
             $w('#backToTopButton').style.color = '#000000';
         });
         
         $w('#backToTopButton').onMouseOut(() => {
-            $w('#backToTopButton').style.backgroundColor = 'rgba(57, 255, 20, 0.2)';
-            $w('#backToTopButton').style.color = '#39FF14';
+            $w('#backToTopButton').style.backgroundColor = 'rgba(9, 125, 7, 0.2)';
+            $w('#backToTopButton').style.color = '#097D07';
         });
     }
     
@@ -160,7 +160,7 @@ $w.onReady(function () {
         if ($w(iconId)) {
             $w(iconId).onMouseIn(() => {
                 $w(iconId).style.opacity = 1;
-                $w(iconId).style.filter = 'drop-shadow(0 0 10px #39FF14)';
+                $w(iconId).style.filter = 'drop-shadow(0 0 10px #097D07)';
             });
             
             $w(iconId).onMouseOut(() => {
