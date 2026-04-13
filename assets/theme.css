@@ -78,15 +78,25 @@ a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
 }
 
 .site-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   line-height: 1;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(9, 125, 7, 0.55);
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 18px rgba(9, 125, 7, 0.15);
+}
+
+.site-logo:hover {
+  box-shadow: 0 0 26px rgba(9, 125, 7, 0.25);
 }
 
 .site-logo-img {
   display: block;
   height: 46px;
   width: auto;
+  filter: drop-shadow(0 0 16px rgba(9, 125, 7, 0.35));
 }
 
 .site-nav {
@@ -469,13 +479,22 @@ a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
 
 .brand-story-logo {
   margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 2px solid rgba(9, 125, 7, 0.6);
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 30px rgba(9, 125, 7, 0.18);
 }
 
 .brand-story-logo img {
   display: block;
-  width: 220px;
+  width: 240px;
   max-width: 100%;
   height: auto;
+  filter: drop-shadow(0 0 18px rgba(9, 125, 7, 0.35));
 }
 
 .brand-story-image {
@@ -597,6 +616,9 @@ a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
   .footer-inner { grid-template-columns: 1fr; gap: 40px; }
   .product-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
   .hero-cta-group { flex-direction: column; align-items: center; }
+
+  /* Scale logo a bit down on smaller screens so it stays clean */
+  .brand-story-logo img { width: 200px; }
 
   /* On mobile, avoid the hero background being cropped/zoomed. */
   .hero-bg {
