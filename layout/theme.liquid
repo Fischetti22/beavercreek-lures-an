@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Beavercreek Lures - Home of the Camo Frog. Premium handcrafted fishing lures for bass and snakehead. We didn't invent the chase — we perfected the strike.">
   <title>{{ page_title }} | Beavercreek Lures</title>
+  <link rel="icon" type="image/jpeg" href="{{ 'logo.jpg' | asset_url }}">
+  <link rel="apple-touch-icon" href="{{ 'logo.jpg' | asset_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,7 +23,9 @@
   <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="site-logo">BEAVERCREEK<span>LURES</span></a>
+      <a href="/" class="site-logo" aria-label="Beavercreek Lures">
+        <img class="site-logo-img" src="{{ 'logo.jpg' | asset_url }}" alt="Beavercreek Lures" loading="eager">
+      </a>
       
       <nav class="site-nav">
         <a href="/" class="nav-link">Home</a>

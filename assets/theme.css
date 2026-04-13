@@ -78,20 +78,15 @@ a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
 }
 
 .site-logo {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 1.8rem;
-  color: #097D07;
-  text-shadow: 0 0 15px rgba(9, 125, 7, 0.5);
-  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
   line-height: 1;
 }
 
-.site-logo span {
+.site-logo-img {
   display: block;
-  font-size: 0.9rem;
-  letter-spacing: 8px;
-  color: #fff;
-  text-shadow: none;
+  height: 46px;
+  width: auto;
 }
 
 .site-nav {
@@ -470,6 +465,17 @@ a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
   line-height: 1.8;
   margin-bottom: 20px;
   font-family: 'Barlow', sans-serif;
+}
+
+.brand-story-logo {
+  margin-top: 26px;
+}
+
+.brand-story-logo img {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
 }
 
 .brand-story-image {
