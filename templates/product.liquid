@@ -1,45 +1,36 @@
-<div style="max-width: 1200px; margin: 60px auto; padding: 0 20px;">
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+<section class="section section-dark" style="padding-top:50px;">
+<div class="section-inner">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
     
-    <!-- Product Image -->
+    <!-- Product Images -->
     <div>
       {% if product.featured_image %}
-        <img src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" style="width: 100%; border: 2px solid {{ settings.color_accent }};">
+        <img src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" style="width:100%;border:3px solid #39FF14;box-shadow:0 0 40px rgba(57,255,20,0.2);">
       {% endif %}
-      
-      <!-- Thumbnail Images -->
       {% if product.images.size > 1 %}
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px;">
-          {% for image in product.images %}
-            <img src="{{ image | img_url: '200x200' }}" alt="{{ product.title }}" style="width: 100%; cursor: pointer; border: 1px solid #333;">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;">
+          {% for image in product.images limit: 8 %}
+            <img src="{{ image | img_url: '200x200' }}" alt="{{ product.title }}" style="width:100%;cursor:pointer;border:2px solid #222;transition:border-color 0.3s;" onmouseover="document.querySelector('.main-img').src=this.src.replace('200x200','800x800')">
           {% endfor %}
         </div>
       {% endif %}
     </div>
-    
+
     <!-- Product Info -->
     <div>
-      <h1 style="font-family: {{ settings.font_heading.family }}, Impact, sans-serif; color: {{ settings.color_accent }}; font-size: 3rem; margin: 0 0 20px 0; text-transform: uppercase;">
-        {{ product.title }}
-      </h1>
-      
-      <p style="font-size: 2rem; font-weight: bold; margin-bottom: 30px;">
-        ${{ product.price | money_without_currency }}
-      </p>
-      
-      <div style="color: #ccc; line-height: 1.6; margin-bottom: 40px;">
-        {{ product.description }}
-      </div>
-      
+      <p class="section-eyebrow" style="margin-bottom:15px;">Beavercreek Lures</p>
+      <h1 style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(3rem,5vw,5rem);color:#fff;margin:0 0 5px 0;">{{ product.title }}</h1>
+      <p style="font-size:2.5rem;font-family:'Bebas Neue',sans-serif;color:#39FF14;margin:0 0 30px 0;">${{ product.price | money_without_currency }}</p>
+      <div style="color:#aaa;line-height:1.8;margin-bottom:40px;font-family:'Barlow',sans-serif;">{{ product.description }}</div>
+
       {% form 'product', product %}
-        <!-- Variant Selector -->
         {% if product.variants.size > 1 %}
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 10px; font-weight: bold; text-transform: uppercase;">Color:</label>
-            <select name="id" style="width: 100%; padding: 15px; background: #1a1a1a; border: 2px solid {{ settings.color_accent }}; color: #fff; font-size: 1rem;">
+          <div style="margin-bottom:25px;">
+            <label style="display:block;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:2px;font-size:0.85rem;color:#39FF14;">SELECT COLOR</label>
+            <select name="id" style="width:100%;padding:15px;background:#111;border:2px solid #39FF14;color:#fff;font-size:1rem;cursor:pointer;">
               {% for variant in product.variants %}
-                <option value="{{ variant.id }}" {% if variant.available == false %}disabled{% endif %}>
-                  {{ variant.title }} - ${{ variant.price | money_without_currency }}
+                <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                  {{ variant.title }}{% unless variant.available %} - Sold Out{% endunless %}
                 </option>
               {% endfor %}
             </select>
@@ -47,19 +38,18 @@
         {% else %}
           <input type="hidden" name="id" value="{{ product.variants.first.id }}">
         {% endif %}
-        
-        <!-- Quantity -->
-        <div style="margin-bottom: 30px;">
-          <label style="display: block; margin-bottom: 10px; font-weight: bold; text-transform: uppercase;">Quantity:</label>
-          <input type="number" name="quantity" value="1" min="1" style="width: 100px; padding: 15px; background: #1a1a1a; border: 2px solid {{ settings.color_accent }}; color: #fff; font-size: 1rem;">
+
+        <div style="display:flex;gap:15px;margin-bottom:25px;align-items:center;">
+          <div>
+            <label style="display:block;margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:2px;font-size:0.85rem;color:#aaa;">QTY</label>
+            <input type="number" name="quantity" value="1" min="1" style="width:80px;padding:14px;background:#111;border:2px solid #333;color:#fff;font-size:1rem;text-align:center;">
+          </div>
+          <button type="submit" class="btn-primary" style="flex:1;padding:16px;font-size:1.4rem;border:none;cursor:pointer;margin-top:23px;">Add to Cart</button>
         </div>
-        
-        <!-- Add to Cart Button -->
-        <button type="submit" style="width: 100%; padding: 20px; background: {{ settings.color_accent }}; color: #000; border: none; font-family: {{ settings.font_heading.family }}, Impact, sans-serif; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.3s;">
-          ADD TO CART
-        </button>
       {% endform %}
+
+      <a href="/collections/all" style="color:#666;font-size:0.9rem;">&larr; Back to all lures</a>
     </div>
-    
   </div>
 </div>
+</section>

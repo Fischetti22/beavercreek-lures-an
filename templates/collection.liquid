@@ -1,40 +1,37 @@
-<div style="max-width: 1200px; margin: 60px auto; padding: 0 20px;">
-  
-  <h1 style="font-family: {{ settings.font_heading.family }}, Impact, sans-serif; font-size: 4rem; text-align: center; margin-bottom: 10px; text-transform: uppercase;">
-    <span style="color: {{ settings.color_accent }};">{{ collection.title }}</span>
-  </h1>
-  
-  <p style="text-align: center; color: #888; margin-bottom: 60px;">
-    {{ collection.description }}
-  </p>
-  
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
-    {% for product in collection.products %}
-      <a href="{{ product.url }}" style="text-decoration: none; color: inherit; background: #1a1a1a; border: 1px solid rgba(57, 255, 20, 0.3); overflow: hidden; transition: all 0.3s;">
-        <div style="aspect-ratio: 1; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-          {% if product.featured_image %}
-            <img src="{{ product.featured_image | img_url: '500x500' }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
-          {% else %}
-            <span style="font-size: 4rem; color: {{ settings.color_accent }};">🎣</span>
-          {% endif %}
-        </div>
-        <div style="padding: 20px;">
-          <h3 style="font-family: {{ settings.font_heading.family }}, Impact, sans-serif; color: {{ settings.color_accent }}; font-size: 1.5rem; margin: 0 0 10px 0; text-transform: uppercase;">
-            {{ product.title }}
-          </h3>
-          <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">${{ product.price | money_without_currency }}</p>
-          {% if product.variants.size > 1 %}
-            <p style="font-size: 0.9rem; color: #888; margin-top: 5px;">{{ product.variants.size }} colors</p>
-          {% endif %}
-        </div>
-      </a>
-    {% endfor %}
-  </div>
-  
-  {% if paginate.pages > 1 %}
-    <div style="text-align: center; margin-top: 60px;">
-      {{ paginate | default_pagination }}
+<section class="section section-dark" style="padding-top:50px;">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">Beavercreek Lures</p>
+      <h1 class="section-title"><span class="accent">{{ collection.title }}</span></h1>
+      {% if collection.description != blank %}
+        <p class="section-subtitle">{{ collection.description }}</p>
+      {% else %}
+        <p class="section-subtitle">Deadly. Proven. Unstoppable.</p>
+      {% endif %}
     </div>
-  {% endif %}
-  
-</div>
+    <div class="product-grid">
+      {% for product in collection.products %}
+        <a href="{{ product.url }}" class="product-card">
+          <div class="product-card-image">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}" loading="lazy">
+            {% else %}
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;color:#39FF14;">🎣</div>
+            {% endif %}
+            <div class="product-card-overlay"><span>VIEW PRODUCT</span></div>
+          </div>
+          <div class="product-card-info">
+            <div class="product-card-title">{{ product.title }}</div>
+            <div class="product-card-price">${{ product.price | money_without_currency }}</div>
+            {% if product.variants.size > 1 %}
+              <div class="product-card-variants">{{ product.variants.size }} Colors Available</div>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% if paginate.pages > 1 %}
+      <div style="text-align:center;margin-top:50px;">{{ paginate | default_pagination }}</div>
+    {% endif %}
+  </div>
+</section>

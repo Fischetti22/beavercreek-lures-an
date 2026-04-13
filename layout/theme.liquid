@@ -3,41 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{{ page_title }}</title>
-  
+  <meta name="description" content="Beavercreek Lures - Home of the Camo Frog. Premium handcrafted fishing lures for bass and snakehead. We didn't invent the chase — we perfected the strike.">
+  <title>{{ page_title }} | Beavercreek Lures</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   {{ content_for_header }}
-  
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
-  <script src="{{ 'theme.js' | asset_url }}" defer></script>
 </head>
-<body style="background: {{ settings.color_background }}; color: {{ settings.color_text }}; margin: 0; font-family: {{ settings.font_body.family }}, sans-serif;">
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span>🎣 FREE SHIPPING ON ORDERS OVER $50 &nbsp;|&nbsp; 👑 HOME OF THE CAMO FROG &nbsp;|&nbsp; 🎣 FREE SHIPPING ON ORDERS OVER $50</span>
+  </div>
 
   <!-- Header -->
-  <header style="background: rgba(0,0,0,0.95); border-bottom: 3px solid; border-image: linear-gradient(90deg, {{ settings.color_accent }}, {{ settings.color_pink }}, {{ settings.color_orange }}, {{ settings.color_yellow }}) 1; padding: 15px 20px; position: sticky; top: 0; z-index: 100;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-      <h1 style="font-family: {{ settings.font_heading.family }}, Impact, sans-serif; color: {{ settings.color_accent }}; margin: 0; font-size: 2rem; letter-spacing: 3px;">
-        <a href="/" style="color: {{ settings.color_accent }}; text-decoration: none; text-shadow: 0 0 10px {{ settings.color_accent }};">BEAVERCREEK LURES</a>
-      </h1>
-      <nav style="display: flex; gap: 30px;">
-        <a href="/" style="color: {{ settings.color_text }}; text-decoration: none; font-weight: bold; text-transform: uppercase; transition: color 0.3s;">Home</a>
-        <a href="/collections/all" style="color: {{ settings.color_text }}; text-decoration: none; font-weight: bold; text-transform: uppercase; transition: color 0.3s;">Shop</a>
-        <a href="/pages/about" style="color: {{ settings.color_text }}; text-decoration: none; font-weight: bold; text-transform: uppercase; transition: color 0.3s;">About</a>
-        <a href="/cart" style="color: {{ settings.color_accent }}; text-decoration: none; font-weight: bold; text-transform: uppercase; transition: color 0.3s;">Cart ({{ cart.item_count }})</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo">BEAVERCREEK<span>LURES</span></a>
+      
+      <nav class="site-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/collections/all" class="nav-link">Shop</a>
+        <a href="/pages/catch-gallery" class="nav-link">Gallery</a>
+        <a href="/pages/about" class="nav-link">About</a>
+        <a href="/pages/contact" class="nav-link">Contact</a>
+        <a href="/cart" class="nav-link nav-cart">Cart {% if cart.item_count > 0 %}<span class="cart-count">{{ cart.item_count }}</span>{% endif %}</a>
       </nav>
+
+      <!-- Mobile menu button -->
+      <button class="mobile-menu-btn" onclick="document.querySelector('.site-nav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main>
+  <main class="site-main">
     {{ content_for_layout }}
   </main>
 
   <!-- Footer -->
-  <footer style="background: #000; border-top: 2px solid {{ settings.color_accent }}; padding: 40px 20px; text-align: center;">
-    <h3 style="font-family: {{ settings.font_heading.family }}, Impact, sans-serif; color: {{ settings.color_accent }}; font-size: 2rem; margin-bottom: 10px;">BEAVERCREEK LURES</h3>
-    <p style="color: #888; text-transform: uppercase; letter-spacing: 1px; margin: 10px 0;">Built for the hunt. Designed for the kill.</p>
-    <p style="color: #666; font-size: 0.9rem; margin-top: 30px;">&copy; {{ 'now' | date: '%Y' }} Beavercreek Lures. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">BEAVERCREEK<span>LURES</span></div>
+        <p class="footer-tagline">We didn't invent the chase —<br>we perfected the strike.</p>
+        <p class="footer-sub">HOME OF THE CAMO FROG</p>
+      </div>
+      <div class="footer-links">
+        <h4>QUICK LINKS</h4>
+        <a href="/collections/all">Shop All Lures</a>
+        <a href="/pages/catch-gallery">Catch Gallery</a>
+        <a href="/pages/about">About Us</a>
+        <a href="/pages/contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4>FOLLOW US</h4>
+        <a href="https://www.facebook.com/people/Beavercreek-Lures/61576769684823/" target="_blank">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} Beavercreek Lures. All rights reserved.</p>
+    </div>
   </footer>
 
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
 </body>
 </html>
