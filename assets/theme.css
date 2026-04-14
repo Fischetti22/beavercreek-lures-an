@@ -787,6 +787,13 @@ button:hover {
   transform: scale(1.1);
 }
 
+/* === PRODUCT PAGE LAYOUT === */
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   /*
@@ -802,5 +809,15 @@ button:hover {
 
   h2 {
     font-size: 2rem !important;
+  }
+
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .main-img {
+    max-width: 100%;
+    height: auto;
   }
 }

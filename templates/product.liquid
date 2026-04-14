@@ -1,11 +1,11 @@
 <section class="section section-dark" style="padding-top:50px;">
 <div class="section-inner">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
+  <div class="product-layout">
 
     <!-- Product Images -->
     <div>
       {% if product.featured_image %}
-        <img class="main-img" src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" style="width:100%;border:3px solid #097D07;box-shadow:0 0 40px rgba(9,125,7,0.2);">
+        <img class="main-img" src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" style="width:100%;border:3px solid #097D07;box-shadow:0 0 40px rgba(9,125,7,0.2);cursor:zoom-in;">
       {% endif %}
       {% if product.images.size > 1 %}
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;">
@@ -156,6 +156,20 @@
                   setMain();
                 }
               });
+            });
+          }
+
+          // Lightbox: tap main image to view fullscreen
+          if (mainImg) {
+            mainImg.addEventListener('click', function () {
+              var overlay = document.createElement('div');
+              overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:20px;';
+              var img = document.createElement('img');
+              img.src = mainImg.src;
+              img.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;border:2px solid #097D07;border-radius:8px;';
+              overlay.appendChild(img);
+              overlay.addEventListener('click', function () { overlay.remove(); });
+              document.body.appendChild(overlay);
             });
           }
 
