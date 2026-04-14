@@ -1,7 +1,7 @@
 <section class="section section-dark" style="padding-top:50px;">
 <div class="section-inner">
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
-    
+
     <!-- Product Images -->
     <div>
       {% if product.featured_image %}
@@ -26,75 +26,144 @@
 
     <!-- Product Info -->
     <div>
+      {% assign current_variant = product.selected_or_first_available_variant %}
+
       <p class="section-eyebrow" style="margin-bottom:15px;">Beavercreek Lures</p>
       <h1 style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(3rem,5vw,5rem);color:#fff;margin:0 0 5px 0;">{{ product.title }}</h1>
-      <p style="font-size:2.5rem;font-family:'Bebas Neue',sans-serif;color:#097D07;margin:0 0 30px 0;">${{ product.price | money_without_currency }}</p>
+      <p class="product-price" style="font-size:2.5rem;font-family:'Bebas Neue',sans-serif;color:#097D07;margin:0 0 30px 0;">${{ current_variant.price | money_without_currency }}</p>
       <div style="color:#aaa;line-height:1.8;margin-bottom:40px;font-family:'Barlow',sans-serif;">{{ product.description }}</div>
 
       {% form 'product', product %}
-        {% if product.variants.size > 1 %}
+        <input type="hidden" name="id" class="variant-id-input" value="{{ current_variant.id }}">
+
+        {% for option in product.options_with_values %}
           <div style="margin-bottom:25px;">
-            <label style="display:block;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:2px;font-size:0.85rem;color:#097D07;">SELECT COLOR</label>
-            <select name="id" style="width:100%;padding:15px;background:#111;border:2px solid #097D07;color:#fff;font-size:1rem;cursor:pointer;">
-              {% for variant in product.variants %}
-                <option value="{{ variant.id }}" {% if variant.image %}data-image="{{ variant.image | img_url: '800x800' }}"{% endif %} {% unless variant.available %}disabled{% endunless %}>
-                  {{ variant.title }}{% unless variant.available %} - Sold Out{% endunless %}
+            <label style="display:block;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:2px;font-size:0.85rem;color:#097D07;">
+              {{ option.name | upcase }}
+            </label>
+            <select class="product-option" data-option-index="{{ forloop.index0 }}" style="width:100%;padding:15px;background:#111;border:2px solid #097D07;color:#fff;font-size:1rem;cursor:pointer;">
+              {% for value in option.values %}
+                <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
+                  {{ value }}
                 </option>
               {% endfor %}
             </select>
           </div>
-        {% else %}
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-        {% endif %}
+        {% endfor %}
 
         <div style="display:flex;gap:15px;margin-bottom:25px;align-items:center;">
           <div>
             <label style="display:block;margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:2px;font-size:0.85rem;color:#aaa;">QTY</label>
             <input type="number" name="quantity" value="1" min="1" style="width:80px;padding:14px;background:#111;border:2px solid #333;color:#fff;font-size:1rem;text-align:center;">
           </div>
-          <button type="submit" class="btn-primary" style="flex:1;padding:16px;font-size:1.4rem;border:none;cursor:pointer;margin-top:23px;">Add to Cart</button>
+          <button type="submit" class="btn-primary add-to-cart-btn" style="flex:1;padding:16px;font-size:1.4rem;border:none;cursor:pointer;margin-top:23px;{% unless current_variant.available %}opacity:0.6;cursor:not-allowed;{% endunless %}" {% unless current_variant.available %}disabled{% endunless %}>
+            {% if current_variant.available %}Add to Cart{% else %}Sold Out{% endif %}
+          </button>
         </div>
       {% endform %}
 
       <script>
         (function () {
           var mainImg = document.querySelector('.main-img');
-          if (!mainImg) return;
+          var optionSelects = document.querySelectorAll('.product-option');
+          var idInput = document.querySelector('form[action^="/cart/add"] .variant-id-input');
+          var priceEl = document.querySelector('.product-price');
+          var addBtn = document.querySelector('form[action^="/cart/add"] .add-to-cart-btn');
+
+          var variants = {{ product.variants | json }};
+
+          function getSelectedOptions() {
+            var opts = [];
+            optionSelects.forEach(function (sel) {
+              opts.push(sel.value);
+            });
+            return opts;
+          }
+
+          function findVariantByOptions(selectedOptions) {
+            for (var i = 0; i < variants.length; i++) {
+              var v = variants[i];
+              var match = true;
+              for (var j = 0; j < selectedOptions.length; j++) {
+                if (v.options[j] !== selectedOptions[j]) {
+                  match = false;
+                  break;
+                }
+              }
+              if (match) return v;
+            }
+            return null;
+          }
+
+          function formatMoney(cents) {
+            // Basic USD formatting; Shopify may also provide Shopify.formatMoney
+            try {
+              return (cents / 100).toFixed(2);
+            } catch (e) {
+              return cents;
+            }
+          }
+
+          function setMainImageFromVariant(v) {
+            if (!mainImg || !v) return;
+            var src = null;
+            if (v.featured_image && v.featured_image.src) src = v.featured_image.src;
+            if (src) mainImg.src = src;
+          }
+
+          function syncUI() {
+            var selected = getSelectedOptions();
+            var v = findVariantByOptions(selected);
+            if (!v) return;
+
+            if (idInput) idInput.value = v.id;
+            if (priceEl && typeof v.price === 'number') priceEl.textContent = '$' + formatMoney(v.price);
+
+            setMainImageFromVariant(v);
+
+            if (addBtn) {
+              if (v.available) {
+                addBtn.disabled = false;
+                addBtn.textContent = 'Add to Cart';
+                addBtn.style.opacity = '1';
+                addBtn.style.cursor = 'pointer';
+              } else {
+                addBtn.disabled = true;
+                addBtn.textContent = 'Sold Out';
+                addBtn.style.opacity = '0.6';
+                addBtn.style.cursor = 'not-allowed';
+              }
+            }
+          }
 
           // Thumbnail switching (works on mobile)
-          var thumbs = document.querySelectorAll('.product-thumb');
-          thumbs.forEach(function (thumb) {
-            function setMain() {
-              var full = thumb.getAttribute('data-full');
-              if (full) mainImg.src = full;
-            }
+          if (mainImg) {
+            var thumbs = document.querySelectorAll('.product-thumb');
+            thumbs.forEach(function (thumb) {
+              function setMain() {
+                var full = thumb.getAttribute('data-full');
+                if (full) mainImg.src = full;
+              }
 
-            thumb.addEventListener('click', function (e) {
-              e.preventDefault();
-              setMain();
-            });
-
-            thumb.addEventListener('keydown', function (e) {
-              if (e.key === 'Enter' || e.key === ' ') {
+              thumb.addEventListener('click', function (e) {
                 e.preventDefault();
                 setMain();
-              }
+              });
+
+              thumb.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setMain();
+                }
+              });
             });
+          }
+
+          optionSelects.forEach(function (sel) {
+            sel.addEventListener('change', syncUI);
           });
 
-          // Variant switching -> update main image when variant has an image
-          var variantSelect = document.querySelector('form[action^="/cart/add"] select[name="id"]');
-          if (variantSelect) {
-            function syncVariantImage() {
-              var opt = variantSelect.options[variantSelect.selectedIndex];
-              if (!opt) return;
-              var img = opt.getAttribute('data-image');
-              if (img) mainImg.src = img;
-            }
-
-            variantSelect.addEventListener('change', syncVariantImage);
-            syncVariantImage();
-          }
+          syncUI();
         })();
       </script>
 
