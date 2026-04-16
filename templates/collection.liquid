@@ -1,9 +1,25 @@
+{% assign type_filter = '' %}
+{% assign type_label = collection.title %}
+{% if request.path contains '/top-water' %}
+  {% assign type_filter = 'top-water' %}
+  {% assign type_label = 'Top Water' %}
+{% elsif request.path contains '/saltwater' %}
+  {% assign type_filter = 'saltwater' %}
+  {% assign type_label = 'Saltwater' %}
+{% elsif request.path contains '/sub-surface' %}
+  {% assign type_filter = 'sub-surface' %}
+  {% assign type_label = 'Sub-Surface' %}
+{% elsif request.path contains '/plastic-baits' %}
+  {% assign type_filter = 'plastic-baits' %}
+  {% assign type_label = 'Plastic Baits' %}
+{% endif %}
+
 <section class="section section-dark" style="padding-top:50px;">
   <div class="section-inner">
     <div class="section-header">
       <p class="section-eyebrow">Beavercreek Lures</p>
-      <h1 class="section-title"><span class="accent">{{ collection.title }}</span></h1>
-      {% if collection.description != blank %}
+      <h1 class="section-title"><span class="accent">{{ type_label }}</span></h1>
+      {% if collection.description != blank and type_filter == '' %}
         <p class="section-subtitle">{{ collection.description }}</p>
       {% else %}
         <p class="section-subtitle">Deadly. Proven. Unstoppable.</p>
@@ -11,6 +27,16 @@
     </div>
     <div class="product-grid">
       {% for product in collection.products %}
+        {% assign show_product = true %}
+        {% if type_filter != '' %}
+          {% assign product_type_handle = product.type | handleize %}
+          {% if product_type_handle contains type_filter %}
+            {% assign show_product = true %}
+          {% else %}
+            {% assign show_product = false %}
+          {% endif %}
+        {% endif %}
+        {% if show_product %}
         <a href="{{ product.url }}" class="product-card">
           <div class="product-card-image">
             {% if product.featured_image %}
@@ -28,6 +54,7 @@
             {% endif %}
           </div>
         </a>
+        {% endif %}
       {% endfor %}
     </div>
     {% if paginate.pages > 1 %}
