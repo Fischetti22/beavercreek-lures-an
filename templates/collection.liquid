@@ -30,7 +30,14 @@
         {% assign show_product = true %}
         {% if type_filter != '' %}
           {% assign product_type_handle = product.type | handleize %}
-          {% if product_type_handle contains type_filter %}
+          {% assign product_tag_match = false %}
+          {% for tag in product.tags %}
+            {% assign tag_handle = tag | handleize %}
+            {% if tag_handle == type_filter %}
+              {% assign product_tag_match = true %}
+            {% endif %}
+          {% endfor %}
+          {% if product_type_handle contains type_filter or product_tag_match %}
             {% assign show_product = true %}
           {% else %}
             {% assign show_product = false %}

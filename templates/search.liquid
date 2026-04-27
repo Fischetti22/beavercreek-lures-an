@@ -1,0 +1,45 @@
+<section class="section section-dark" style="padding-top:60px;">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">Search Beavercreek Lures</p>
+      <h1 class="section-title"><span class="accent">Search</span></h1>
+    </div>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" style="max-width:720px;margin:0 auto 50px;display:flex;gap:12px;flex-wrap:wrap;">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search lures..." style="flex:1;min-width:240px;padding:16px;background:#111;border:2px solid #097D07;color:#fff;font-size:1rem;">
+      <button type="submit" class="btn-primary" style="border:none;">Search</button>
+    </form>
+
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <p class="section-subtitle" style="text-align:center;margin-bottom:35px;">{{ search.results_count }} result{% unless search.results_count == 1 %}s{% endunless %} for "{{ search.terms }}"</p>
+        <div class="product-grid">
+          {% for item in search.results %}
+            <a href="{{ item.url }}" class="product-card">
+              <div class="product-card-image">
+                {% if item.featured_image %}
+                  <img src="{{ item.featured_image | img_url: '600x600' }}" alt="{{ item.title | escape }}" loading="lazy">
+                {% else %}
+                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;color:#097D07;">🎣</div>
+                {% endif %}
+                <div class="product-card-overlay"><span>VIEW</span></div>
+              </div>
+              <div class="product-card-info">
+                <div class="product-card-title">{{ item.title }}</div>
+                {% if item.object_type == 'product' %}
+                  <div class="product-card-price">{{ item.price | money }}</div>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div style="background:#0b0b0b;border:2px solid #222;padding:35px;text-align:center;">
+          <h2 style="font-family:'Bebas Neue',Impact,sans-serif;font-size:2.5rem;color:#fff;margin:0 0 10px 0;">No results found</h2>
+          <p style="color:#aaa;font-family:'Barlow',sans-serif;margin:0 0 25px 0;">Try another search or browse all lures.</p>
+          <a href="/collections/all" class="btn-primary">Shop All Lures</a>
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
