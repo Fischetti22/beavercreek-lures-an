@@ -1,6 +1,6 @@
 {% assign type_filter = '' %}
 {% assign type_label = collection.title %}
-{% if request.path contains '/top-water' %}
+{% if request.path contains '/top-water' or request.path contains '/topwater' %}
   {% assign type_filter = 'top-water' %}
   {% assign type_label = 'Top Water' %}
 {% elsif request.path contains '/saltwater' %}
@@ -29,19 +29,15 @@
       {% for product in collection.products %}
         {% assign show_product = true %}
         {% if type_filter != '' %}
-          {% assign product_type_handle = product.type | handleize %}
-          {% assign product_tag_match = false %}
+          {% assign show_product = false %}
           {% for tag in product.tags %}
             {% assign tag_handle = tag | handleize %}
             {% if tag_handle == type_filter %}
-              {% assign product_tag_match = true %}
+              {% assign show_product = true %}
+            {% elsif type_filter == 'top-water' and tag_handle == 'topwater' %}
+              {% assign show_product = true %}
             {% endif %}
           {% endfor %}
-          {% if product_type_handle contains type_filter or product_tag_match %}
-            {% assign show_product = true %}
-          {% else %}
-            {% assign show_product = false %}
-          {% endif %}
         {% endif %}
         {% if show_product %}
         <a href="{{ product.url }}" class="product-card">
