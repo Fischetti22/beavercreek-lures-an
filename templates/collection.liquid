@@ -12,6 +12,12 @@
 {% elsif request.path contains '/plastic-baits' %}
   {% assign type_filter = 'plastic-baits' %}
   {% assign type_label = 'Plastic Baits' %}
+{% elsif request.path contains '/merch' %}
+  {% assign type_filter = 'merch' %}
+  {% assign type_label = 'Merch' %}
+{% elsif request.path contains '/terminal-tackle' %}
+  {% assign type_filter = 'terminal-tackle' %}
+  {% assign type_label = 'Terminal Tackle' %}
 {% endif %}
 
 <section class="section section-dark" style="padding-top:50px;">
