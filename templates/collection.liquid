@@ -18,6 +18,9 @@
 {% elsif request.path contains '/terminal-tackle' %}
   {% assign type_filter = 'terminal-tackle' %}
   {% assign type_label = 'Terminal Tackle' %}
+{% elsif request.path contains '/catfish' %}
+  {% assign type_filter = 'catfish' %}
+  {% assign type_label = 'Catfish' %}
 {% endif %}
 
 <section class="section section-dark" style="padding-top:50px;">
