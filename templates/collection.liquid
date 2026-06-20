@@ -1,6 +1,11 @@
 {% assign type_filter = '' %}
 {% assign type_label = collection.title %}
-{% if request.path contains '/top-water' or request.path contains '/topwater' %}
+{% assign is_sale = false %}
+{% if request.path contains '/sale' %}
+  {% assign type_filter = 'sale' %}
+  {% assign type_label = 'Sale' %}
+  {% assign is_sale = true %}
+{% elsif request.path contains '/top-water' or request.path contains '/topwater' %}
   {% assign type_filter = 'top-water' %}
   {% assign type_label = 'Top Water' %}
 {% elsif request.path contains '/saltwater' %}
@@ -27,11 +32,17 @@
   <div class="section-inner">
     <div class="section-header">
       <p class="section-eyebrow">Beavercreek Lures</p>
-      <h1 class="section-title"><span class="accent">{{ type_label }}</span></h1>
-      {% if collection.description != blank and type_filter == '' %}
-        <p class="section-subtitle">{{ collection.description }}</p>
+      {% if is_sale %}
+        <h1 class="section-title"><span style="color:#ff4444;">SALE &amp; DISCOUNTS</span></h1>
+        <p class="section-subtitle" style="color:#ff4444;font-style:italic;font-size:1.3rem;letter-spacing:2px;">⚠️ If they're gone — they're gone.</p>
+        <p class="section-subtitle" style="color:#aaa;margin-top:8px;">Clearance prices. No restocks. Grab them while you can.</p>
       {% else %}
-        <p class="section-subtitle">Deadly. Proven. Unstoppable.</p>
+        <h1 class="section-title"><span class="accent">{{ type_label }}</span></h1>
+        {% if collection.description != blank and type_filter == '' %}
+          <p class="section-subtitle">{{ collection.description }}</p>
+        {% else %}
+          <p class="section-subtitle">Deadly. Proven. Unstoppable.</p>
+        {% endif %}
       {% endif %}
     </div>
     <div class="product-grid">
@@ -60,7 +71,11 @@
           </div>
           <div class="product-card-info">
             <div class="product-card-title">{{ product.title }}</div>
-            <div class="product-card-price">${{ product.price | money_without_currency }}</div>
+            {% if is_sale and product.compare_at_price > product.price %}
+              <div class="product-card-price" style="color:#ff4444;">${{ product.price | money_without_currency }} <span style="color:#666;font-size:0.85em;text-decoration:line-through;">${{ product.compare_at_price | money_without_currency }}</span></div>
+            {% else %}
+              <div class="product-card-price">${{ product.price | money_without_currency }}</div>
+            {% endif %}
             {% if product.variants.size > 1 %}
               <div class="product-card-variants">{{ product.variants.size }} Options Available</div>
             {% endif %}
