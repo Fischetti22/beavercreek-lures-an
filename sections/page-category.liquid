@@ -1,0 +1,96 @@
+{% assign tag_filter = page.handle %}
+{% assign tag_filter_alt = '' %}
+{% if tag_filter == 'top-water' %}{% assign tag_filter_alt = 'topwater' %}{% endif %}
+{% assign is_sale = false %}
+{% if tag_filter == 'sale' %}{% assign is_sale = true %}{% endif %}
+
+<section class="section section-dark" style="padding-top:50px;">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+      {% if is_sale %}
+        <h1 class="section-title"><span style="color:#ff4444;">SALE &amp; DISCOUNTS</span></h1>
+        <p class="section-subtitle" style="color:#ff4444;font-style:italic;font-size:1.3rem;letter-spacing:2px;">⚠️ If they're gone — they're gone.</p>
+        <p class="section-subtitle" style="color:#aaa;margin-top:8px;">Clearance prices. No restocks. Grab them while you can.</p>
+      {% else %}
+        <h1 class="section-title"><span class="accent">{{ page.title }}</span></h1>
+        {% if section.settings.description != blank %}
+          <p class="section-subtitle">{{ section.settings.description }}</p>
+        {% else %}
+          <p class="section-subtitle">Deadly. Proven. Unstoppable.</p>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    {% assign found_products = 0 %}
+    <div class="product-grid">
+      {% for product in collections.all.products %}
+        {% assign show = false %}
+        {% for tag in product.tags %}
+          {% assign th = tag | handleize %}
+          {% if th == tag_filter %}{% assign show = true %}{% endif %}
+          {% if tag_filter_alt != blank and th == tag_filter_alt %}{% assign show = true %}{% endif %}
+        {% endfor %}
+        {% if show %}
+          {% assign found_products = found_products | plus: 1 %}
+          <a href="{{ product.url }}" class="product-card">
+            <div class="product-card-image">
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}" loading="lazy">
+              {% else %}
+                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;color:#097D07;">🎣</div>
+              {% endif %}
+              <div class="product-card-overlay"><span>VIEW PRODUCT</span></div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-title">{{ product.title }}</div>
+              {% if is_sale and product.compare_at_price > product.price %}
+                <div class="product-card-price" style="color:#ff4444;">${{ product.price | money_without_currency }} <span style="color:#666;font-size:0.85em;text-decoration:line-through;">${{ product.compare_at_price | money_without_currency }}</span></div>
+              {% else %}
+                <div class="product-card-price">${{ product.price | money_without_currency }}</div>
+              {% endif %}
+              {% if product.variants.size > 1 %}
+                <div class="product-card-variants">{{ product.variants.size }} Options Available</div>
+              {% endif %}
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if found_products == 0 %}
+      <div style="text-align:center;padding:80px 20px;">
+        <p style="color:#666;font-size:1.2rem;font-family:'Barlow',sans-serif;">{{ section.settings.empty_message }}</p>
+        <a href="/collections/all" class="btn-secondary" style="margin-top:30px;display:inline-block;">Shop All Lures</a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Beavercreek Lures"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Category Description",
+      "info": "Optional subtitle shown below the page title. Leave blank for the default."
+    },
+    {
+      "type": "text",
+      "id": "empty_message",
+      "label": "Empty State Message",
+      "default": "Products coming soon. Check back shortly."
+    }
+  ]
+}
+{% endschema %}
