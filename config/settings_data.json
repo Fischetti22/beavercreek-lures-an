@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_accent": "#097D07",
@@ -6,6 +15,279 @@
     "color_yellow": "#FFD700",
     "social_facebook": "https://www.facebook.com/people/Beavercreek-Lures/61576769684823/",
     "social_instagram": "https://www.instagram.com/beavercreek_lures/",
-    "social_tiktok": "https://www.tiktok.com/@beavercreek.lures"
+    "social_tiktok": "https://www.tiktok.com/@beavercreek.lures",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "text": "🎣 FREE SHIPPING ON ORDERS OVER $50   |   👑 HOME OF THE CAMO FROG   |   🎣 FREE SHIPPING ON ORDERS OVER $50"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "tagline": "We didn't invent the chase — we perfected the strike.",
+          "button1_label": "Shop Lures",
+          "button1_url": "",
+          "button2_label": "View Catches",
+          "button2_url": ""
+        }
+      },
+      "featured-products": {
+        "type": "featured-products",
+        "settings": {
+          "eyebrow": "Proven on the Water",
+          "title_prefix": "Our",
+          "title_accent": "Arsenal",
+          "subtitle": "Deadly. Proven. Unstoppable.",
+          "products_to_show": 6,
+          "button_text": "View All Lures"
+        }
+      },
+      "brand-story": {
+        "type": "brand-story",
+        "settings": {
+          "eyebrow": "Who We Are",
+          "heading_line1": "BUILT FOR",
+          "heading_line2": "THE HUNT",
+          "paragraph1": "At Beavercreek Lures, we strive to deliver unmatched performance strike after strike. Our lures are designed with one goal in mind: to help you land trophy fish.",
+          "paragraph2": "From the iconic Camo Frog to our diverse lineup of proven patterns, each lure is crafted to trigger aggressive strikes in any condition.",
+          "button_text": "Our Story",
+          "button_url": ""
+        }
+      },
+      "catch-preview": {
+        "type": "catch-preview",
+        "settings": {
+          "eyebrow": "Trophy Catches",
+          "title_accent": "Proven",
+          "title_suffix": "Results",
+          "subtitle": "Real anglers. Real fish. Real results.",
+          "button_text": "View Full Gallery",
+          "button_url": ""
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "tagline": "We didn't invent the chase — we perfected the strike.",
+          "sub_text": "HOME OF THE CAMO FROG",
+          "facebook_url": "https://www.facebook.com/people/Beavercreek-Lures/61576769684823/",
+          "instagram_url": "https://www.instagram.com/beavercreek_lures/",
+          "tiktok_url": "https://www.tiktok.com/@beavercreek.lures"
+        }
+      },
+      "page-catch-gallery": {
+        "type": "page-catch-gallery",
+        "blocks": {
+          "image_g4ycVn": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/white_toxic.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_LH9gRk": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/white_orange2.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_RgwC4X": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/snakehead2.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_TVkmw6": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/closeup_pinkbigback.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_PBenWg": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/scale_length.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_tnC8Jk": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/orangebigback.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_pGkMkz": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/pink_yellowcatch.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_Rf4Gee": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/closeup_white.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_KPcwm8": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/more_catch.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_4Kn3X4": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/fullscale.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_rL7EGH": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/closeup.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_Rk39pE": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/pinkBigback.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_bQDRki": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Toxic_Snakehead.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_YNwMbh": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/lure_catch.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_pYBHL4": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/portrail_catch.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_Fznecj": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/red_black_0ee770a7-5868-4fde-b650-ae857ccdd9ed.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_33Yc8z": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/youth_catch.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_KNjxem": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/white_orange.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_DaV4nX": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/snakehead.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_KmrKAh": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Big_Mouth.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_6PJQXd": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/american_closeup.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_PkWPY6": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/white_toxic2.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_mGD9Qr": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/white_snakehead.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          },
+          "image_PfrJ9w": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/white_redcatch.jpg",
+              "alt": "Beavercreek Lures catch photo"
+            }
+          }
+        },
+        "block_order": [
+          "image_g4ycVn",
+          "image_LH9gRk",
+          "image_RgwC4X",
+          "image_TVkmw6",
+          "image_PBenWg",
+          "image_tnC8Jk",
+          "image_pGkMkz",
+          "image_Rf4Gee",
+          "image_KPcwm8",
+          "image_4Kn3X4",
+          "image_rL7EGH",
+          "image_Rk39pE",
+          "image_bQDRki",
+          "image_YNwMbh",
+          "image_pYBHL4",
+          "image_Fznecj",
+          "image_33Yc8z",
+          "image_KNjxem",
+          "image_DaV4nX",
+          "image_KmrKAh",
+          "image_6PJQXd",
+          "image_PkWPY6",
+          "image_mGD9Qr",
+          "image_PfrJ9w"
+        ],
+        "settings": {
+          "eyebrow": "Beavercreek Lures in Action",
+          "title_accent": "Catch",
+          "title_suffix": "Gallery",
+          "subtitle": "Real fish. Real results. Our lures deliver strike after strike.",
+          "button_text": "Shop These Lures"
+        }
+      }
+    },
+    "content_for_index": []
   }
 }
