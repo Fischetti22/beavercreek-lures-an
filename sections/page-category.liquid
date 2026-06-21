@@ -10,9 +10,9 @@
     <div class="section-header">
       <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
       {% if is_sale %}
-        <h1 class="section-title"><span style="color:#ff4444;">SALE &amp; DISCOUNTS</span></h1>
-        <p class="section-subtitle" style="color:#ff4444;font-style:italic;font-size:1.3rem;letter-spacing:2px;">⚠️ If they're gone — they're gone.</p>
-        <p class="section-subtitle" style="color:#aaa;margin-top:8px;">Clearance prices. No restocks. Grab them while you can.</p>
+        <h1 class="section-title"><span style="color:#ff4444;">{{ section.settings.sale_title }}</span></h1>
+        <p class="section-subtitle" style="color:#ff4444;font-style:italic;font-size:1.3rem;letter-spacing:2px;">{{ section.settings.sale_tagline }}</p>
+        <p class="section-subtitle" style="color:#aaa;margin-top:8px;">{{ section.settings.sale_subtitle }}</p>
       {% else %}
         <h1 class="section-title"><span class="accent">{{ page.title }}</span></h1>
         {% if section.settings.description != blank %}
@@ -84,6 +84,29 @@
       "id": "description",
       "label": "Category Description",
       "info": "Optional subtitle shown below the page title. Leave blank for the default."
+    },
+    {
+      "type": "header",
+      "content": "Sale Page Settings",
+      "info": "These only apply to the Sale & Discounts page"
+    },
+    {
+      "type": "text",
+      "id": "sale_title",
+      "label": "Sale Page Title",
+      "default": "SALE & DISCOUNTS"
+    },
+    {
+      "type": "text",
+      "id": "sale_tagline",
+      "label": "Sale Tagline",
+      "default": "\u26a0\ufe0f If they're gone \u2014 they're gone."
+    },
+    {
+      "type": "text",
+      "id": "sale_subtitle",
+      "label": "Sale Subtitle",
+      "default": "Clearance prices. No restocks. Grab them while you can."
     },
     {
       "type": "text",
