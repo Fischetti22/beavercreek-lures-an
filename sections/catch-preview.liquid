@@ -1,0 +1,34 @@
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="section-title"><span class="accent">{{ section.settings.title_accent }}</span> {{ section.settings.title_suffix }}</h2>
+      <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+    <div class="gallery-grid">
+      {% assign catch_images = 'american_closeup.jpg,closeup.jpg,fullscale.jpg,lure_catch.jpg,portrail_catch.jpg,snakehead.jpg,white_snakehead.jpg,youth_catch.jpg' | split: ',' %}
+      {% for img in catch_images %}
+        <div class="gallery-item">
+          <img src="{{ img | asset_url }}" alt="Beavercreek Lures catch photo" loading="lazy">
+        </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top:50px;">
+      <a href="{{ section.settings.button_url }}" class="btn-secondary">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Catch Gallery Preview",
+  "settings": [
+    { "type": "text", "id": "eyebrow",       "label": "Eyebrow",            "default": "Trophy Catches" },
+    { "type": "text", "id": "title_accent",  "label": "Title Accent Word",  "default": "Proven" },
+    { "type": "text", "id": "title_suffix",  "label": "Title Suffix",       "default": "Results" },
+    { "type": "text", "id": "subtitle",      "label": "Subtitle",           "default": "Real anglers. Real fish. Real results." },
+    { "type": "text", "id": "button_text",   "label": "Button Text",        "default": "View Full Gallery" },
+    { "type": "url",  "id": "button_url",    "label": "Button URL" }
+  ]
+}
+{% endschema %}

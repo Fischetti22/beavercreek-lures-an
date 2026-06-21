@@ -1,0 +1,24 @@
+<section class="hero">
+  <div class="hero-bg" style="background-image: url('{{ 'Beavercreek.png' | asset_url }}')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-subtitle">{{ section.settings.tagline }}</p>
+    <div class="hero-cta-group">
+      <a href="{{ section.settings.button1_url }}" class="btn-primary">{{ section.settings.button1_label }}</a>
+      <a href="{{ section.settings.button2_url }}" class="btn-secondary">{{ section.settings.button2_label }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    { "type": "text", "id": "tagline",       "label": "Tagline",         "default": "We didn't invent the chase — we perfected the strike." },
+    { "type": "text", "id": "button1_label", "label": "Button 1 Label",  "default": "Shop Lures" },
+    { "type": "url",  "id": "button1_url",   "label": "Button 1 URL" },
+    { "type": "text", "id": "button2_label", "label": "Button 2 Label",  "default": "View Catches" },
+    { "type": "url",  "id": "button2_url",   "label": "Button 2 URL" }
+  ]
+}
+{% endschema %}

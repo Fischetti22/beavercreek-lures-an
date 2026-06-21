@@ -1,0 +1,55 @@
+<div style="max-width:800px;margin:60px auto;padding:0 20px;">
+  <div style="text-align:center;padding:60px 20px;background:linear-gradient(135deg,#1a1a1a,#000);border:3px solid #097D07;margin-bottom:60px;">
+    <h1 style="font-family:'Bebas Neue',Impact,sans-serif;color:#097D07;font-size:4rem;margin:0 0 20px 0;text-transform:uppercase;text-shadow:0 0 20px #097D07;">{{ page.title }}</h1>
+    <p style="font-size:1.2rem;color:#ccc;margin:0;">{{ section.settings.intro_text }}</p>
+  </div>
+  <div style="background:#1a1a1a;padding:50px;border-radius:10px;border:2px solid #097D07;">
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <div style="background:#097D07;color:#000;padding:20px;margin-bottom:30px;border-radius:5px;text-align:center;font-weight:bold;text-transform:uppercase;">✅ Thanks for reaching out! We'll get back to you soon.</div>
+      {% endif %}
+      {% if form.errors %}
+        <div style="background:#ff4444;color:#fff;padding:20px;margin-bottom:30px;border-radius:5px;">
+          <strong>Oops! Please fix:</strong>
+          <ul style="margin:10px 0 0 0;padding-left:20px;">{% for field in form.errors %}<li>{{ field | capitalize }} {{ form.errors.messages[field] }}</li>{% endfor %}</ul>
+        </div>
+      {% endif %}
+      <div style="margin-bottom:25px;">
+        <label style="display:block;color:#097D07;font-weight:bold;margin-bottom:10px;text-transform:uppercase;font-size:0.9rem;">Name *</label>
+        <input type="text" name="contact[name]" required style="width:100%;padding:15px;background:#000;border:2px solid #333;color:#fff;font-size:1rem;border-radius:5px;">
+      </div>
+      <div style="margin-bottom:25px;">
+        <label style="display:block;color:#097D07;font-weight:bold;margin-bottom:10px;text-transform:uppercase;font-size:0.9rem;">Email *</label>
+        <input type="email" name="contact[email]" required style="width:100%;padding:15px;background:#000;border:2px solid #333;color:#fff;font-size:1rem;border-radius:5px;">
+      </div>
+      <div style="margin-bottom:25px;">
+        <label style="display:block;color:#097D07;font-weight:bold;margin-bottom:10px;text-transform:uppercase;font-size:0.9rem;">Phone (Optional)</label>
+        <input type="tel" name="contact[phone]" style="width:100%;padding:15px;background:#000;border:2px solid #333;color:#fff;font-size:1rem;border-radius:5px;">
+      </div>
+      <div style="margin-bottom:30px;">
+        <label style="display:block;color:#097D07;font-weight:bold;margin-bottom:10px;text-transform:uppercase;font-size:0.9rem;">Message *</label>
+        <textarea name="contact[body]" rows="6" required style="width:100%;padding:15px;background:#000;border:2px solid #333;color:#fff;font-size:1rem;border-radius:5px;resize:vertical;font-family:inherit;"></textarea>
+      </div>
+      <button type="submit" style="width:100%;padding:20px;background:#097D07;color:#000;border:none;font-family:'Bebas Neue',Impact,sans-serif;font-size:1.5rem;text-transform:uppercase;letter-spacing:2px;cursor:pointer;border-radius:5px;font-weight:bold;">SEND MESSAGE</button>
+    {% endform %}
+  </div>
+  <div style="margin-top:60px;text-align:center;padding:45px 35px;background:#1a1a1a;border-radius:12px;border:2px solid rgba(9,125,7,0.35);">
+    <p style="font-size:0.85rem;color:#097D07;text-transform:uppercase;letter-spacing:4px;margin:0 0 10px 0;font-weight:800;">Follow the Bite</p>
+    <h3 style="font-family:'Bebas Neue',Impact,sans-serif;color:#fff;font-size:2.2rem;margin:0 0 28px 0;text-transform:uppercase;">Follow Beavercreek Lures</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;">
+      <a href="https://www.facebook.com/people/Beavercreek-Lures/61576769684823/" target="_blank" rel="noopener noreferrer" style="display:block;padding:16px 18px;background:#000;border:2px solid #FF1493;border-radius:8px;color:#fff;text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:2px;">Facebook</a>
+      <a href="https://www.instagram.com/beavercreek_lures/" target="_blank" rel="noopener noreferrer" style="display:block;padding:16px 18px;background:#000;border:2px solid #097D07;border-radius:8px;color:#fff;text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:2px;">Instagram</a>
+      <a href="https://www.tiktok.com/@beavercreek.lures" target="_blank" rel="noopener noreferrer" style="display:block;padding:16px 18px;background:#000;border:2px solid #FFD700;border-radius:8px;color:#fff;text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:2px;">TikTok</a>
+    </div>
+    <p style="color:#777;font-size:0.95rem;margin:24px 0 0 0;line-height:1.6;">Follow along for lure drops, catch photos, and on-the-water updates.</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": [
+    { "type": "text", "id": "intro_text", "label": "Intro Text", "default": "Got questions? We'd love to hear from you!" }
+  ]
+}
+{% endschema %}

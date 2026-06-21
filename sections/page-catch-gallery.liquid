@@ -1,0 +1,47 @@
+<section class="section section-dark" style="padding-top:50px;">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="section-title"><span class="accent">{{ section.settings.title_accent }}</span> {{ section.settings.title_suffix }}</h1>
+      <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="{{ 'american_closeup.jpg' | asset_url }}" alt="Catch" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'Big Mouth.jpg' | asset_url }}" alt="Big Mouth Bass" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'closeup.jpg' | asset_url }}" alt="Closeup" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'closeup_pinkbigback.jpg' | asset_url }}" alt="Pink Big Back" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'closeup_white.jpg' | asset_url }}" alt="White Catch" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'fullscale.jpg' | asset_url }}" alt="Full Scale" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'lure_catch.jpg' | asset_url }}" alt="Lure Catch" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'more_catch.jpg' | asset_url }}" alt="More Catches" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'orangebigback.jpg' | asset_url }}" alt="Orange Big Back" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'pinkBigback.jpg' | asset_url }}" alt="Pink Big Back" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'pink_yellowcatch.jpg' | asset_url }}" alt="Pink Yellow" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'portrail_catch.jpg' | asset_url }}" alt="Portrait Catch" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'red_black.jpg' | asset_url }}" alt="Red Black" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'snakehead.jpg' | asset_url }}" alt="Snakehead" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'snakehead2.jpg' | asset_url }}" alt="Snakehead 2" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'Toxic_Snakehead.jpg' | asset_url }}" alt="Toxic Snakehead" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'white_orange.jpg' | asset_url }}" alt="White Orange" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'white_snakehead.jpg' | asset_url }}" alt="White Snakehead" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'white_toxic.jpg' | asset_url }}" alt="White Toxic" loading="lazy"></div>
+      <div class="gallery-item"><img src="{{ 'youth_catch.jpg' | asset_url }}" alt="Youth Catch" loading="lazy"></div>
+    </div>
+    <div style="text-align:center;margin-top:60px;">
+      <a href="/collections/all" class="btn-primary">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Catch Gallery",
+  "settings": [
+    { "type": "text", "id": "eyebrow",      "label": "Eyebrow",           "default": "Beavercreek Lures in Action" },
+    { "type": "text", "id": "title_accent", "label": "Title Accent Word", "default": "Catch" },
+    { "type": "text", "id": "title_suffix", "label": "Title Suffix",      "default": "Gallery" },
+    { "type": "text", "id": "subtitle",     "label": "Subtitle",          "default": "Real fish. Real results. Our lures deliver strike after strike." },
+    { "type": "text", "id": "button_text",  "label": "Button Text",       "default": "Shop These Lures" }
+  ]
+}
+{% endschema %}

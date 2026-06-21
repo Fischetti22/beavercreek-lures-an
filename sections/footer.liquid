@@ -1,0 +1,46 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">BEAVERCREEK<span>LURES</span></div>
+      <p class="footer-tagline">{{ section.settings.tagline }}</p>
+      <p class="footer-sub">{{ section.settings.sub_text }}</p>
+    </div>
+    <div class="footer-links">
+      <h4>QUICK LINKS</h4>
+      <a href="/collections/all/top-water">Top Water</a>
+      <a href="/collections/all/sub-surface">Sub-Surface</a>
+      <a href="/collections/all/plastic-baits">Plastic Baits</a>
+      <a href="/collections/all/saltwater">Saltwater</a>
+      <a href="/collections/all/terminal-tackle">Terminal Tackle</a>
+      <a href="/collections/all/catfish">Catfish</a>
+      <a href="/collections/all/sale" style="color:#ff4444;">🔥 Sale</a>
+      <a href="/collections/all/merch">Merch</a>
+      <a href="/collections/all">Shop All</a>
+      <a href="/pages/catch-gallery">Catch Gallery</a>
+      <a href="/pages/about">About Us</a>
+      <a href="/pages/contact">Contact</a>
+    </div>
+    <div class="footer-links">
+      <h4>FOLLOW US</h4>
+      {% if section.settings.facebook_url != blank %}<a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener noreferrer">Facebook</a>{% endif %}
+      {% if section.settings.instagram_url != blank %}<a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener noreferrer">Instagram</a>{% endif %}
+      {% if section.settings.tiktok_url != blank %}<a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener noreferrer">TikTok</a>{% endif %}
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {{ 'now' | date: '%Y' }} Beavercreek Lures. All rights reserved.</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "tagline",       "label": "Tagline",      "default": "We didn't invent the chase — we perfected the strike." },
+    { "type": "text", "id": "sub_text",      "label": "Sub Text",     "default": "HOME OF THE CAMO FROG" },
+    { "type": "text", "id": "facebook_url",  "label": "Facebook URL", "default": "https://www.facebook.com/people/Beavercreek-Lures/61576769684823/" },
+    { "type": "text", "id": "instagram_url", "label": "Instagram URL","default": "https://www.instagram.com/beavercreek_lures/" },
+    { "type": "text", "id": "tiktok_url",    "label": "TikTok URL",   "default": "https://www.tiktok.com/@beavercreek.lures" }
+  ]
+}
+{% endschema %}

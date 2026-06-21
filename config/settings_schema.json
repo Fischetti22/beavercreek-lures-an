@@ -2,67 +2,32 @@
   {
     "name": "theme_info",
     "theme_name": "Beavercreek Lures",
-    "theme_version": "1.0.0",
-    "theme_author": "Beavercreek",
+    "theme_version": "2.0.0",
+    "theme_author": "Beavercreek Lures",
     "theme_documentation_url": "",
     "theme_support_url": ""
   },
   {
     "name": "Colors",
     "settings": [
-      {
-        "type": "color",
-        "id": "color_background",
-        "label": "Background",
-        "default": "#000000"
-      },
-      {
-        "type": "color",
-        "id": "color_text",
-        "label": "Text",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "color_accent",
-        "label": "Green Accent",
-        "default": "#097D07"
-      },
-      {
-        "type": "color",
-        "id": "color_pink",
-        "label": "Hot Pink",
-        "default": "#FF1493"
-      },
-      {
-        "type": "color",
-        "id": "color_orange",
-        "label": "Bright Orange",
-        "default": "#FF4500"
-      },
-      {
-        "type": "color",
-        "id": "color_yellow",
-        "label": "Bright Yellow",
-        "default": "#FFD700"
-      }
+      { "type": "color", "id": "color_accent", "label": "Primary Accent (Green)", "default": "#097D07" },
+      { "type": "color", "id": "color_pink",   "label": "Pink Accent",  "default": "#FF1493" },
+      { "type": "color", "id": "color_orange", "label": "Orange Accent","default": "#FF4500" },
+      { "type": "color", "id": "color_yellow", "label": "Yellow Accent","default": "#FFD700" }
     ]
   },
   {
     "name": "Typography",
     "settings": [
-      {
-        "type": "font_picker",
-        "id": "font_heading",
-        "label": "Heading font",
-        "default": "impact_n4"
-      },
-      {
-        "type": "font_picker",
-        "id": "font_body",
-        "label": "Body font",
-        "default": "helvetica_n4"
-      }
+      { "type": "font_picker", "id": "font_heading", "label": "Heading Font", "default": "bebas_neue_n4" }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      { "type": "text", "id": "social_facebook",  "label": "Facebook URL",  "default": "https://www.facebook.com/people/Beavercreek-Lures/61576769684823/" },
+      { "type": "text", "id": "social_instagram", "label": "Instagram URL", "default": "https://www.instagram.com/beavercreek_lures/" },
+      { "type": "text", "id": "social_tiktok",    "label": "TikTok URL",    "default": "https://www.tiktok.com/@beavercreek.lures" }
     ]
   }
 ]

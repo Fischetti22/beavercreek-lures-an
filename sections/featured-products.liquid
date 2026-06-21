@@ -1,0 +1,47 @@
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="section-title">{{ section.settings.title_prefix }} <span class="accent">{{ section.settings.title_accent }}</span></h2>
+      <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+    <div class="product-grid">
+      {% for product in collections.all.products limit: section.settings.products_to_show %}
+        <a href="{{ product.url }}" class="product-card">
+          <div class="product-card-image">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}" loading="lazy">
+            {% else %}
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;color:#097D07;">🎣</div>
+            {% endif %}
+            <div class="product-card-overlay"><span>VIEW PRODUCT</span></div>
+          </div>
+          <div class="product-card-info">
+            <div class="product-card-title">{{ product.title }}</div>
+            <div class="product-card-price">${{ product.price | money_without_currency }}</div>
+            {% if product.variants.size > 1 %}
+              <div class="product-card-variants">{{ product.variants.size }} Options Available</div>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top:50px;">
+      <a href="/collections/all" class="btn-primary">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    { "type": "text",  "id": "eyebrow",          "label": "Eyebrow Text",       "default": "Proven on the Water" },
+    { "type": "text",  "id": "title_prefix",      "label": "Title Prefix",       "default": "Our" },
+    { "type": "text",  "id": "title_accent",      "label": "Title Accent Word",  "default": "Arsenal" },
+    { "type": "text",  "id": "subtitle",          "label": "Subtitle",           "default": "Deadly. Proven. Unstoppable." },
+    { "type": "range", "id": "products_to_show",  "label": "Products to Show",   "min": 3, "max": 12, "step": 3, "default": 6 },
+    { "type": "text",  "id": "button_text",       "label": "Button Text",        "default": "View All Lures" }
+  ]
+}
+{% endschema %}

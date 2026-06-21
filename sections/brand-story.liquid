@@ -1,0 +1,31 @@
+<section class="section section-mid">
+  <div class="section-inner">
+    <div class="brand-story">
+      <div class="brand-story-text">
+        <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2>{{ section.settings.heading_line1 }}<br><span class="accent">{{ section.settings.heading_line2 }}</span></h2>
+        <p>{{ section.settings.paragraph1 }}</p>
+        <p>{{ section.settings.paragraph2 }}</p>
+        <a href="{{ section.settings.button_url }}" class="btn-primary" style="margin-top:20px;">{{ section.settings.button_text }}</a>
+      </div>
+      <div class="brand-story-image">
+        <img src="{{ 'logo.jpg' | asset_url }}" alt="Beavercreek Lures logo" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",       "label": "Eyebrow",        "default": "Who We Are" },
+    { "type": "text",     "id": "heading_line1", "label": "Heading Line 1", "default": "BUILT FOR" },
+    { "type": "text",     "id": "heading_line2", "label": "Heading Line 2", "default": "THE HUNT" },
+    { "type": "textarea", "id": "paragraph1",    "label": "Paragraph 1",    "default": "At Beavercreek Lures, we strive to deliver unmatched performance strike after strike. Our lures are designed with one goal in mind: to help you land trophy fish." },
+    { "type": "textarea", "id": "paragraph2",    "label": "Paragraph 2",    "default": "From the iconic Camo Frog to our diverse lineup of proven patterns, each lure is crafted to trigger aggressive strikes in any condition." },
+    { "type": "text",     "id": "button_text",   "label": "Button Text",    "default": "Our Story" },
+    { "type": "url",      "id": "button_url",    "label": "Button URL" }
+  ]
+}
+{% endschema %}

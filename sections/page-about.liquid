@@ -1,0 +1,35 @@
+<div style="max-width:1000px;margin:60px auto;padding:0 20px;">
+  <div style="text-align:center;padding:60px 20px;background:linear-gradient(135deg,#1a1a1a,#000);border:3px solid #097D07;margin-bottom:60px;">
+    <h1 style="font-family:'Bebas Neue',Impact,sans-serif;color:#097D07;font-size:4rem;margin:0 0 20px 0;text-transform:uppercase;text-shadow:0 0 20px #097D07;">{{ page.title }}</h1>
+    <p style="font-size:1.5rem;color:#fff;text-transform:uppercase;letter-spacing:2px;margin:0;">HOME OF THE CAMO FROG</p>
+  </div>
+  <div style="line-height:1.8;font-size:1.1rem;color:#ddd;">
+    <div style="text-align:center;padding:40px 20px;background:#1a1a1a;border-left:5px solid #097D07;margin-bottom:40px;">
+      <p style="font-size:2rem;font-style:italic;color:#097D07;margin:0;">&ldquo;{{ section.settings.tagline }}&rdquo;</p>
+    </div>
+    <div style="margin-bottom:40px;">{{ page.content }}</div>
+    <div style="background:#1a1a1a;padding:40px;border-radius:10px;border:2px solid #097D07;margin-bottom:40px;">
+      <h2 style="font-family:'Bebas Neue',Impact,sans-serif;color:#097D07;font-size:2.5rem;margin-bottom:20px;text-transform:uppercase;">THE LEGACY</h2>
+      <div style="color:#ccc;line-height:1.9;">
+        <p style="margin:0 0 18px 0;">I started fishing when I was just 2 years old, and hunting as soon as I could walk—right alongside my father. From day one, the outdoors wasn't just something I did… it's who I am.</p>
+        <p style="margin:0 0 18px 0;">Growing up in South Jersey, I've spent a lifetime chasing fish and hunting game, especially targeting mature whitetails through the brutal winter months. Over the years, that dedication turned into results—multiple fishing tournament wins and several whitetails in the New Jersey record books.</p>
+        <p style="margin:0 0 18px 0;">Around 2016, I got hooked on chasing snakeheads—and that's when things really changed. I became obsessed with not just catching them, but understanding the lures built to target them.</p>
+        <p style="margin:0 0 18px 0;">That obsession turned into building my own. Now it's bigger than just me. My two sons, Tyler and Drew, have been raised the same way—on the water and in the woods.</p>
+        <p style="margin:0;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;">This isn't just a brand.<br>It's a legacy.</p>
+      </div>
+    </div>
+    <div style="text-align:center;padding:60px 20px;">
+      <h3 style="font-family:'Bebas Neue',Impact,sans-serif;color:#FFD700;font-size:2rem;margin-bottom:30px;text-transform:uppercase;">READY TO LAND YOUR TROPHY?</h3>
+      <a href="/collections/all" class="btn-primary btn-primary--lg">SHOP LURES</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Page",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline Quote", "default": "We didn't invent the chase — we perfected the strike." }
+  ]
+}
+{% endschema %}
